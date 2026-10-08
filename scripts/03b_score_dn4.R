@@ -1,8 +1,9 @@
 # =============================================================================
-# Step 3: Score DN4 (neuropathic pain) and ID Migraine
+# Step 3b: Score DN4 (neuropathic pain)
 # =============================================================================
-# Input : your cleaned, recoded spreadsheet (.csv or .xlsx)
-# Output: the same data with score columns added, saved to data/clean/
+# Run Step 3a (03a_score_id_migraine.R) first.
+# Input : data/clean/scored_data.rds from Step 3a
+# Output: the same file with DN4 columns added
 #
 # Assumes the instrument items are coded 1 = yes (sí), 0 = no, blank/NA = missing.
 #
@@ -13,15 +14,15 @@
 #   3. Click "Source". Read the checks printed in the Console.
 #   4. Hand-check the 10 printed rows against the paper forms.
 #
-# Packages (one-time install): install.packages(c("dplyr", "readxl"))
+# Packages (one-time install): install.packages("dplyr")
 # =============================================================================
 
-library(dplyr)
+suppressPackageStartupMessages(library(dplyr))
 
 # ---- SETTINGS: edit these to match your spreadsheet -------------------------
 
-input_file  <- "data/clean/cleaned_data.xlsx"   # or .csv
-output_file <- "data/clean/scored_data.csv"
+input_file  <- "data/clean/scored_data.rds"   # output of Step 3a
+output_file <- "data/clean/scored_data.csv"   # a .rds copy is saved too
 
 # Participant ID column (used for the hand-check printout)
 id_col <- "id"
@@ -48,39 +49,20 @@ dn4_exam_cols <- c(
   "dn4_brushing"          # 10. Dolor provocado por el roce
 )
 
-# ID Migraine headache screener (>= 2 headaches in past 3 months, 1 = yes).
-# Set to NULL if it was not asked. Without a screener, everyone is scored, so
-# anyone who left the 3 items blank ends up "missing" rather than "No". If
-# people without headaches skipped those items, point this at whatever
-# column says they have headaches instead.
-headache_col <- "headache_screen"
-
-# ID Migraine items (3), all about headaches in the past 3 months
-idm_cols <- c(
-  "idm_disability",       # Limited activities for >= 1 day
-  "idm_nausea",           # Nausea / upset stomach
-  "idm_photophobia"       # Light bothered you
-)
-
 # Published cutoffs (don't change unless you have a reason)
 dn4_full_cutoff      <- 4   # DN4 10-item total >= 4 -> neuropathic
 dn4_interview_cutoff <- 3   # DN4 interview-only (7 items) >= 3 -> neuropathic
-idm_cutoff           <- 2   # ID Migraine >= 2 of 3 -> positive
 
 # ---- LOAD DATA --------------------------------------------------------------
 
-if (grepl("\\.xlsx?$", input_file, ignore.case = TRUE)) {
-  dat <- readxl::read_excel(input_file)
-} else {
-  dat <- read.csv(input_file, stringsAsFactors = FALSE)
-}
-dat <- as.data.frame(dat)
-cat("Loaded", nrow(dat), "rows and", ncol(dat), "columns from", input_file, "\n\n")
+if (!file.exists(input_file)) stop("Run Step 3a (03a_score_id_migraine.R) first.")
+dat <- readRDS(input_file)
+cat("Loaded", nrow(dat), "rows from", input_file, "\n\n")
 
 # ---- CHECK: columns exist and are coded 0/1 ---------------------------------
 
 dn4_cols <- c(dn4_interview_cols, dn4_exam_cols)
-all_item_cols <- c(id_col, pain_col, dn4_cols, headache_col, idm_cols)
+all_item_cols <- c(id_col, pain_col, dn4_cols)
 
 missing_cols <- setdiff(all_item_cols, names(dat))
 if (length(missing_cols) > 0) {
@@ -154,36 +136,9 @@ dat <- dat %>%
     neuropathic_pain = factor(neuropathic_pain, levels = c("No", "Yes"))
   )
 
-# ---- SCORE ID MIGRAINE ------------------------------------------------------
-# Only people who screen in for headaches are scored. People without
-# headaches get NA on the score, but count as migraine "No".
-
-if (!is.null(headache_col)) {
-  screened_in  <- dat[[headache_col]] == 1
-  screened_out <- dat[[headache_col]] == 0
-} else {
-  screened_in  <- rep(TRUE, nrow(dat))
-  screened_out <- rep(FALSE, nrow(dat))
-}
-
-dat <- dat %>%
-  mutate(
-    idm_n_answered = rowSums(!is.na(across(all_of(idm_cols)))),
-    idm_score = if_else(screened_in & idm_n_answered == length(idm_cols),
-                        rowSums(across(all_of(idm_cols))),
-                        NA_real_),
-    migraine = case_when(
-      idm_score >= idm_cutoff ~ "Yes",
-      idm_score <  idm_cutoff ~ "No",
-      screened_out            ~ "No",
-      TRUE                    ~ NA_character_   # screener missing or items incomplete
-    ),
-    migraine = factor(migraine, levels = c("No", "Yes"))
-  )
-
 # ---- SUMMARY ----------------------------------------------------------------
 
-cat("\n================ SCORING SUMMARY ================\n")
+cat("\n================ DN4 SUMMARY ================\n")
 
 cat("\nPain screener:\n")
 print(table(Pain = dat[[pain_col]], useNA = "ifany"))
@@ -201,25 +156,18 @@ if (!is.null(dn4_exam_cols)) {
 cat("\nPain group:\n")
 print(table(dat$pain_group, useNA = "ifany"))
 
-cat("\nID Migraine score distribution (people who screened in):\n")
-print(table(IDM_score = dat$idm_score, useNA = "ifany"))
-n_idm_incomplete <- sum(screened_in & dat$idm_n_answered < length(idm_cols), na.rm = TRUE)
-cat("People who screened in but have incomplete ID Migraine (not scored):",
-    n_idm_incomplete, "\n")
-
-cat("\nMigraine (ID Migraine positive):\n")
-print(table(dat$migraine, useNA = "ifany"))
-
-cat("\nOverlap: neuropathic pain x migraine\n")
-print(table(Neuropathic = dat$neuropathic_pain, Migraine = dat$migraine, useNA = "ifany"))
+if ("migraine" %in% names(dat)) {
+  cat("\nOverlap: neuropathic pain x migraine\n")
+  print(table(Neuropathic = dat$neuropathic_pain, Migraine = dat$migraine, useNA = "ifany"))
+}
 
 # ---- HAND-CHECK: compare 10 random rows to the paper forms -------------------
 
 set.seed(2026)
 check_rows <- dat[sample(nrow(dat), min(10, nrow(dat))), ]
 score_cols <- intersect(
-  c(id_col, pain_col, "dn4_interview_score", "dn4_total_score", "pain_group",
-    headache_col, "idm_score", "migraine"),
+  c(id_col, pain_col, dn4_cols, "dn4_interview_score", "dn4_total_score",
+    "pain_group"),
   names(dat)
 )
 cat("\n================ HAND-CHECK THESE 10 ROWS ================\n")
