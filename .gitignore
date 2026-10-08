@@ -1,0 +1,9 @@
+# Participant data stays off GitHub
+data/
+*.xlsx
+*.xls
+*.csv
+*.rds
+.Rhistory
+.RData
+.Rproj.user/
