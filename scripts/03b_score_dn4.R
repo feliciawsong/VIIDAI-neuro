@@ -25,7 +25,7 @@ input_file  <- "data/clean/scored_data.rds"   # output of Step 3a
 output_file <- "data/clean/scored_data.csv"   # a .rds copy is saved too
 
 # Participant ID column (used for the hand-check printout)
-id_col <- "id"
+id_col <- "subid"
 
 # Pain screener: does the participant currently have pain? (1 = yes, 0 = no)
 pain_col <- "pain"

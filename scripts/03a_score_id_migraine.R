@@ -25,7 +25,7 @@ suppressPackageStartupMessages(library(dplyr))
 input_file  <- "data/clean/cleaned_data.xlsx"   # or .csv
 output_file <- "data/clean/scored_data.csv"     # a .rds copy is saved too
 
-id_col <- "id"   # participant ID column (only used for the hand-check printout)
+id_col <- "subid"   # participant ID column (only used for the hand-check printout)
 
 # Q4A. In the past 3 months, have you had headaches? (0 = no, 1 = yes)
 headache_col <- "headache_3mo"
