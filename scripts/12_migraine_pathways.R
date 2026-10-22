@@ -1,14 +1,12 @@
-# ===== Step 9: Pathway analyses (follows the DAG) =====
+# ===== Step 9: Migraine pathway analyses (follows the migraine DAG) =====
 # Poisson regression with robust standard errors -> prevalence ratios (PR).
 # PR = how many times more likely to screen positive. PR 2.0 = twice as likely.
 #
-# PART A  Migraine (adjusted for SEX, plus one more variable chosen from the DAG)
+# Migraine (adjusted for SEX, plus one more variable chosen from the DAG)
 #   A1  Does speaking an Indigenous language -> migraine shrink once work exposures are added?
 #   A2  Does migraine rise with MORE physical/heat exposure? (dose-response)
 #   A3  Main migraine models
-# PART B  Neuropathic pain (adjusted for AGE, plus one more variable chosen from the DAG)
-#   B1  Main neuropathic pain models (metabolic pathway)
-#   B2  Is neuropathic pain pushing people out of work? (healthy worker check)
+# (Neuropathic pain will get its own DAG and script.)
 
 library(tidyverse)
 library(sandwich)
@@ -20,12 +18,8 @@ dat <- readRDS("/Users/feliciasong/Desktop/VIIDAI_scored.rds")
 an <- dat %>%
   mutate(
     migraine_yes    = as.numeric(migraine == "Yes"),
-    neuropathic_yes = as.numeric(neuropathic == "Yes"),
     female          = as.numeric(sex == 0),
     age10           = age / 10,                 # PR per 10 years of age
-    bmi5            = bmi / 5,                  # PR per 5 BMI points
-    obese           = as.numeric(bmi >= 30),
-    diabetes        = health_cond_diabetes,
     hypertension    = health_cond_hypertension,
 
     # NEW SCORE 1: exertion + heat (0, 1, or 2)
@@ -34,14 +28,7 @@ an <- dat %>%
 
     # NEW SCORE 2: total physical workload (number of the 6 physical demands reported, 0-6)
     workload        = heavy_lifting + standing_long_hours + bending_twisting +
-                      repetitive_movements + heat_conditions + cold_wet_conditions,
-
-    # Current work situation (for the healthy worker check)
-    work_status = case_when(
-      occupation == 0          ~ "Agricultural worker",
-      occupation == 1          ~ "Domestic worker/homemaker",
-      occupation %in% c(3, 4)  ~ "Unemployed",
-      !is.na(occupation)       ~ "Other work")
+                      repetitive_movements + heat_conditions + cold_wet_conditions
   )
 
 # --- 2. Helper: fit one model, return the PR for one variable ----------------
@@ -129,39 +116,9 @@ a3 <- bind_rows(
 )
 
 # ============================================================================
-# PART B  NEUROPATHIC PAIN
-# ============================================================================
-
-# --- B1. Metabolic pathway (age + one variable from the DAG) -----------------
-# Obesity/BMI: adjust for age + sex. Do NOT add diabetes (it is on the pathway).
-# Diabetes: adjust for age + obesity (obesity causes both diabetes and neuropathy).
-b1 <- bind_rows(
-  pr(neuropathic_yes ~ bmi5 + age10 + female, "bmi5", an,
-     "B1", "BMI -> neuropathic pain", "Per 5 BMI points + age + sex"),
-  pr(neuropathic_yes ~ obese + age10 + female, "obese", an,
-     "B1", "Obesity -> neuropathic pain", "+ age + sex"),
-  pr(neuropathic_yes ~ diabetes + age10 + obese, "diabetes", an,
-     "B1", "Diabetes -> neuropathic pain", "+ age + obesity")
-)
-
-# --- B2. Healthy worker check -------------------------------------------------
-# (a) Are people with neuropathic pain less often working now?
-b2_table <- an %>%
-  filter(!is.na(work_status), !is.na(neuropathic_yes)) %>%
-  count(work_status, neuropathic = ifelse(neuropathic_yes == 1, "Neuropathic pain", "No neuropathic pain")) %>%
-  group_by(neuropathic) %>%
-  mutate(`% of group` = round(100 * n / sum(n), 1)) %>%
-  ungroup() %>%
-  arrange(neuropathic, work_status)
-# (b) Repetitive movements among CURRENT agricultural workers only
-ag_only <- an %>% filter(work_status == "Agricultural worker")
-b2 <- pr(neuropathic_yes ~ repetitive_movements + age10, "repetitive_movements", ag_only,
-         "B2", "Repetitive movements -> neuropathic pain", "Agricultural workers only, + age")
-
-# ============================================================================
 # PRINT AND SAVE
 # ============================================================================
-results <- bind_rows(a1, a2, a3, b1, b2) %>% select(-PR_num)
+results <- bind_rows(a1, a2, a3) %>% select(-PR_num)
 
 cat("\n=================== MODEL RESULTS ===================\n")
 print(as.data.frame(results), right = FALSE, row.names = FALSE)
@@ -172,9 +129,5 @@ cat("\nA1: Share of the Indigenous language -> migraine link explained by exerti
 cat("\n=================== A2: DOSE-RESPONSE TABLES ===================\n")
 print(as.data.frame(a2_tables), right = FALSE, row.names = FALSE)
 
-cat("\n=================== B2: WORK STATUS BY NEUROPATHIC PAIN ===================\n")
-print(as.data.frame(b2_table), right = FALSE, row.names = FALSE)
-
-write_csv(results,  "/Users/feliciasong/Desktop/pathway_models.csv")
-write_csv(a2_tables, "/Users/feliciasong/Desktop/pathway_dose_response.csv")
-write_csv(b2_table,  "/Users/feliciasong/Desktop/pathway_work_status.csv")
+write_csv(results,   "/Users/feliciasong/Desktop/migraine_pathway_models.csv")
+write_csv(a2_tables, "/Users/feliciasong/Desktop/migraine_dose_response.csv")
