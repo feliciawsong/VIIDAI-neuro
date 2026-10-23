@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1010" viewBox="0 0 1200 1010" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3A3A3A"/></marker><marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9A9A9A"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C62828"/></marker></defs>
+<rect width="1200" height="1010" fill="#FFFFFF"/>
+<text x="600" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F1F1F">Directed acyclic graph (DAG): hypothesized pathways to neuropathic pain</text>
+<text x="150" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#5A5A5A">BACKGROUND FACTORS</text>
+<text x="470" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#5A5A5A">MEASURED EXPOSURES</text>
+<text x="805" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#5A5A5A">MECHANISMS (NOT MEASURED)</text>
+<text x="1085" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#5A5A5A">OUTCOME</text>
+<text x="470" y="108" text-anchor="middle" font-size="11" font-weight="bold" fill="#C46A00" letter-spacing="1">METABOLIC</text>
+<text x="470" y="384" text-anchor="middle" font-size="11" font-weight="bold" fill="#C46A00" letter-spacing="1">WORK / MECHANICAL</text>
+<text x="470" y="646" text-anchor="middle" font-size="11" font-weight="bold" fill="#C46A00" letter-spacing="1">TOXIC</text>
+<line x1="265" y1="235" x2="355" y2="150" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="265" y1="235" x2="355" y2="235" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="265" y1="235" x2="355" y2="320" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M150,208 C300,5 1220,5 1035,443" fill="none" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="265" y1="430" x2="355" y2="160" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="265" y1="430" x2="355" y2="515" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="265" y1="430" x2="355" y2="770" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="265" y1="640" x2="355" y2="430" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="265" y1="640" x2="355" y2="515" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="265" y1="640" x2="355" y2="600" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="265" y1="640" x2="355" y2="685" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="470" y1="177" x2="470" y2="208" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M355,138 Q300,235 355,308" fill="none" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="585" y1="150" x2="685" y2="184" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="585" y1="235" x2="685" y2="204" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="585" y1="320" x2="685" y2="320" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="585" y1="430" x2="685" y2="462" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="585" y1="515" x2="685" y2="484" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="585" y1="600" x2="685" y2="600" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="585" y1="685" x2="685" y2="719" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="585" y1="770" x2="685" y2="739" stroke="#3A3A3A" stroke-width="1.6" marker-end="url(#a)"/>
+<line x1="925" y1="192" x2="1000" y2="450" stroke="#9A9A9A" stroke-width="1.6" stroke-dasharray="6,4" marker-end="url(#g)"/>
+<line x1="925" y1="320" x2="1000" y2="460" stroke="#9A9A9A" stroke-width="1.6" stroke-dasharray="6,4" marker-end="url(#g)"/>
+<line x1="925" y1="472" x2="1000" y2="470" stroke="#9A9A9A" stroke-width="1.6" stroke-dasharray="6,4" marker-end="url(#g)"/>
+<line x1="925" y1="600" x2="1000" y2="480" stroke="#9A9A9A" stroke-width="1.6" stroke-dasharray="6,4" marker-end="url(#g)"/>
+<line x1="925" y1="727" x2="1000" y2="490" stroke="#9A9A9A" stroke-width="1.6" stroke-dasharray="6,4" marker-end="url(#g)"/>
+<line x1="1085" y1="497" x2="1085" y2="610" stroke="#C62828" stroke-width="1.6" stroke-dasharray="6,4" marker-end="url(#r)"/>
+<text x="1085" y="692" text-anchor="middle" font-size="11" fill="#8E1B1B" font-style="italic">Reverse causation: pain may push</text>
+<text x="1085" y="706" text-anchor="middle" font-size="11" fill="#8E1B1B" font-style="italic">people out of repetitive work, so</text>
+<text x="1085" y="720" text-anchor="middle" font-size="11" fill="#8E1B1B" font-style="italic">it can look "protective" in our data</text>
+<rect x="35" y="208" width="230" height="54" rx="8" fill="#D6EFD8" stroke="#2E7D32" stroke-width="2"/>
+<text x="150" y="240" text-anchor="middle" font-size="14" fill="#1F1F1F">Age</text>
+<rect x="35" y="403" width="230" height="54" rx="8" fill="#D6EFD8" stroke="#2E7D32" stroke-width="2"/>
+<text x="150" y="435" text-anchor="middle" font-size="14" fill="#1F1F1F">Sex</text>
+<rect x="35" y="610" width="230" height="60" rx="8" fill="#D6EFD8" stroke="#2E7D32" stroke-width="2"/>
+<text x="150" y="636" text-anchor="middle" font-size="14" fill="#1F1F1F">Indigenous language</text>
+<text x="150" y="654" text-anchor="middle" font-size="11.5" fill="#1F1F1F">(marker of marginalization)</text>
+<rect x="355" y="123" width="230" height="54" rx="8" fill="#FCE4C8" stroke="#C46A00" stroke-width="2"/>
+<text x="470" y="155" text-anchor="middle" font-size="14" fill="#1F1F1F">Obesity / BMI</text>
+<rect x="355" y="208" width="230" height="54" rx="8" fill="#FCE4C8" stroke="#C46A00" stroke-width="2"/>
+<text x="470" y="240" text-anchor="middle" font-size="14" fill="#1F1F1F">Diabetes</text>
+<rect x="355" y="293" width="230" height="54" rx="8" fill="#FCE4C8" stroke="#C46A00" stroke-width="2"/>
+<text x="470" y="325" text-anchor="middle" font-size="14" fill="#1F1F1F">Hypertension</text>
+<rect x="355" y="403" width="230" height="54" rx="8" fill="#FFFFFF" stroke="#C46A00" stroke-width="2"/>
+<text x="470" y="435" text-anchor="middle" font-size="14" fill="#1F1F1F">Repetitive hand movements</text>
+<rect x="355" y="488" width="230" height="54" rx="8" fill="#FFFFFF" stroke="#C46A00" stroke-width="2"/>
+<text x="470" y="520" text-anchor="middle" font-size="14" fill="#1F1F1F">Heavy lifting, bending</text>
+<rect x="355" y="573" width="230" height="54" rx="8" fill="#FFFFFF" stroke="#C46A00" stroke-width="2"/>
+<text x="470" y="605" text-anchor="middle" font-size="14" fill="#1F1F1F">Cold/wet conditions</text>
+<rect x="355" y="658" width="230" height="54" rx="8" fill="#FFFFFF" stroke="#C46A00" stroke-width="2"/>
+<text x="470" y="690" text-anchor="middle" font-size="14" fill="#1F1F1F">Pesticide exposure</text>
+<rect x="355" y="743" width="230" height="54" rx="8" fill="#FFFFFF" stroke="#C46A00" stroke-width="2"/>
+<text x="470" y="775" text-anchor="middle" font-size="14" fill="#1F1F1F">Alcohol use</text>
+<rect x="685" y="162" width="240" height="60" rx="8" fill="#F4F4F4" stroke="#8C8C8C" stroke-width="1.4" stroke-dasharray="6,4"/>
+<text x="805" y="188" text-anchor="middle" font-size="14" fill="#555555" font-style="italic">Metabolic nerve damage</text>
+<text x="805" y="206" text-anchor="middle" font-size="11.5" fill="#555555" font-style="italic">(high blood sugar, inflammation)</text>
+<rect x="685" y="293" width="240" height="54" rx="8" fill="#F4F4F4" stroke="#8C8C8C" stroke-width="1.4" stroke-dasharray="6,4"/>
+<text x="805" y="325" text-anchor="middle" font-size="14" fill="#555555" font-style="italic">Small-vessel damage</text>
+<rect x="685" y="442" width="240" height="60" rx="8" fill="#F4F4F4" stroke="#8C8C8C" stroke-width="1.4" stroke-dasharray="6,4"/>
+<text x="805" y="468" text-anchor="middle" font-size="14" fill="#555555" font-style="italic">Nerve compression</text>
+<text x="805" y="486" text-anchor="middle" font-size="11.5" fill="#555555" font-style="italic">(e.g., carpal tunnel)</text>
+<rect x="685" y="573" width="240" height="54" rx="8" fill="#F4F4F4" stroke="#8C8C8C" stroke-width="1.4" stroke-dasharray="6,4"/>
+<text x="805" y="605" text-anchor="middle" font-size="14" fill="#555555" font-style="italic">Cold-related nerve irritation</text>
+<rect x="685" y="700" width="240" height="54" rx="8" fill="#F4F4F4" stroke="#8C8C8C" stroke-width="1.4" stroke-dasharray="6,4"/>
+<text x="805" y="732" text-anchor="middle" font-size="14" fill="#555555" font-style="italic">Neurotoxicity</text>
+<rect x="1000" y="443" width="170" height="54" rx="8" fill="#1F3A5F" stroke="#1F3A5F" stroke-width="2"/>
+<text x="1085" y="475" text-anchor="middle" font-size="16" fill="#FFFFFF" font-weight="bold">Neuropathic pain</text>
+<rect x="1000" y="610" width="170" height="60" rx="8" fill="#FDECEC" stroke="#C62828" stroke-width="1.4" stroke-dasharray="6,4"/>
+<text x="1085" y="636" text-anchor="middle" font-size="14" fill="#8E1B1B" font-style="italic">Left or reduced</text>
+<text x="1085" y="654" text-anchor="middle" font-size="11.5" fill="#8E1B1B" font-style="italic">hand-intensive work</text>
+<rect x="40" y="850" width="26" height="16" rx="3" fill="#FCE4C8" stroke="#C46A00" stroke-width="1.5"/>
+<text x="74" y="863" font-size="13" fill="#1F1F1F">Main exposure tested</text>
+<rect x="242.0" y="850" width="26" height="16" rx="3" fill="#FFFFFF" stroke="#C46A00" stroke-width="1.5"/>
+<text x="276.0" y="863" font-size="13" fill="#1F1F1F">Exploratory exposure</text>
+<rect x="444.0" y="850" width="26" height="16" rx="3" fill="#D6EFD8" stroke="#2E7D32" stroke-width="1.5"/>
+<text x="478.0" y="863" font-size="13" fill="#1F1F1F">Adjusted for</text>
+<rect x="589.2" y="850" width="26" height="16" rx="3" fill="#F4F4F4" stroke="#8C8C8C" stroke-width="1.5" stroke-dasharray="6,4"/>
+<text x="623.2" y="863" font-size="13" fill="#1F1F1F">Not measured</text>
+<rect x="734.4000000000001" y="850" width="26" height="16" rx="3" fill="#1F3A5F" stroke="#1F3A5F" stroke-width="1.5"/>
+<text x="768.4000000000001" y="863" font-size="13" fill="#1F1F1F">Outcome</text>
+<rect x="844.1000000000001" y="850" width="26" height="16" rx="3" fill="#FDECEC" stroke="#C62828" stroke-width="1.5" stroke-dasharray="6,4"/>
+<text x="878.1000000000001" y="863" font-size="13" fill="#1F1F1F">Reverse causation</text>
+<text x="40" y="894" font-size="13" fill="#1F1F1F"><tspan font-weight="bold">Adjustment sets:</tspan> obesity/BMI: age + sex (not diabetes, which is on the pathway).  Diabetes, hypertension: age + obesity.</text>
+<text x="40" y="914" font-size="13" fill="#1F1F1F">Work exposures and pesticides: age + Indigenous language.  Alcohol: age + sex.</text>
+<text x="40" y="938" font-size="12" fill="#5A5A5A">Arrows show assumed causal direction based on prior literature; the cross-sectional data cannot confirm direction. Dashed arrows pass through unmeasured mechanisms.</text>
+</svg>
